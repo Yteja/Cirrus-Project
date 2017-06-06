@@ -57,5 +57,34 @@ public class HighestPalindrome extends Application {
 		GridPane.setConstraints(label, 0, 4);
 		GridPane.setColumnSpan(label, 2);
 		layout.getChildren().add(label);
+		// Handling the button when clicked
+		BTTN.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent e) {
+				try {
+					int value1 = Integer.parseInt(I1.getText());
+					int value2 = Integer.parseInt(I2.getText());
+					
+						label.setTextFill(Color.GREEN);// Highlighting the
+														// Answer!
+						label.setText("Largest palindrome is : " + highest_num);
+					
+
+					// Exception Handling
+				} catch (NumberFormatException e1) {
+					System.out.println("Error: Either of the value is not a number");
+					label.setTextFill(Color.RED);// Highlighting the Error!
+					label.setText("Error: Either of the value is not a number");
+
+				}
+			}
+
+		});
+
+		// Layout of window
+		Scene scene = new Scene(layout, 500, 300);
+		primaryStage.setScene(scene);
+		primaryStage.show();
 		
 }
