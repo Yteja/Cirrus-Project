@@ -65,11 +65,17 @@ public class HighestPalindrome extends Application {
 				try {
 					int value1 = Integer.parseInt(I1.getText());
 					int value2 = Integer.parseInt(I2.getText());
-					
+					int highest_num = palindromeSearch(value1, value2);// Calling
+																		// PalindromeSearch
+																		// Method
+					if (highest_num >= 0) {
 						label.setTextFill(Color.GREEN);// Highlighting the
 														// Answer!
 						label.setText("Largest palindrome is : " + highest_num);
-					
+					} else {
+						label.setTextFill(Color.RED);// Highlighting the Error!
+						label.setText("Error: Palindrome number cannot be found for the given range");
+					}
 
 					// Exception Handling
 				} catch (NumberFormatException e1) {
@@ -86,5 +92,35 @@ public class HighestPalindrome extends Application {
 		Scene scene = new Scene(layout, 500, 300);
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		
+
+	}
+	// PalindromSearch Method
+
+	public int palindromeSearch(int v1, int v2) {
+
+		int i, sum = 0, temp;// Declaring variables
+		boolean pCheck = false;
+
+		// Logic to print Largest Palindrome between given user inputs
+		{
+			for (i = v2; i >= v1; i--) {
+				sum = 0;
+				temp = i;
+				while (temp != 0) {
+					int rem = temp % 10;
+					temp = temp / 10;
+					sum = (sum * 10) + rem;
+				}
+				if (i == sum) {
+					System.out.println(i);
+					pCheck = true;
+					break;
+				}
+			}
+		}
+		if (pCheck == true)
+			return i;
+		else
+			return -1;
+	}
 }
